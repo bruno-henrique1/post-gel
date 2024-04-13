@@ -5,8 +5,9 @@
 </head>
 <body>
 {% include "global/partial/_header.html" %}
-    <main class="content">
+{% include "global/partial/messages.html" %}
+<main class="content">
         {% block content %}{% endblock content %}
-    </main>
+</main>
 </body>
 </html>

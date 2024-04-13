@@ -15,7 +15,9 @@ class RegisterForm(UserCreationForm):
         required=True,
         min_length=3,
     )
-    email = forms.EmailField()
+    email = forms.EmailField(
+        required=True
+    )
 
     class Meta:
         model = User
@@ -30,7 +32,7 @@ class RegisterForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             self.add_error(
                 'email',
-                ValidationError('Já existe este e-mail', code='invalid')
+                ValidationError('Este e-mail já existe!', code='invalid')
             )
 
         return email
