@@ -4,14 +4,23 @@
         gel
       </a>
     </h1>
+
     <nav class="menu">
         <ul class="menu-list">
-        </li>      
-        <li class="menu-item">
-          <a href="{% url 'gel:register' %}" class="menu-link">Criar</a>
-        </li>
-        <li class="menu-item">
-            <a href="{% url 'gel:login' %}" class="menu-link">Login</a>
-          </li>  
+          {% if user.is_authenticated %}
+            <li class="menu-item">
+              <a href="{% url 'gel:update' %}" class="menu-link">Atualizar</a>
+            </li>
+            <li class="menu-item">
+              <a href="{% url 'gel:login' %}" class="menu-link">Sair</a>
+            </li>
+          {% else %}
+            <li class="menu-item">
+              <a href="{% url 'gel:register' %}" class="menu-link">Criar</a>
+            </li>
+            <li class="menu-item">
+                <a href="{% url 'gel:login' %}" class="menu-link">Login</a>
+            </li>
+          {% endif %}
     
 </header>

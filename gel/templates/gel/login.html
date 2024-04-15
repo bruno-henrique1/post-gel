@@ -6,7 +6,7 @@
     <h2>Entrar</h2>
     {% if user.is_authenticated %}
         <p>
-            Você fez login com {{user.username}}.
+            Você fez login como {{user.username}}.
             Clique <a href="{% url "gel:logout" %}">aqui</a>
             para sair
         </p>

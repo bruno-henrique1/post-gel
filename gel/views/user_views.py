@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from gel.forms import RegisterForm
+from gel.forms import RegisterForm, RegisterUpdateForm
 from django.contrib import messages, auth
 from django.contrib.auth.forms import AuthenticationForm
+
 def register(request):
     form = RegisterForm()
     
@@ -10,7 +11,7 @@ def register(request):
         if form.is_valid():
             messages.success(request,'Usuário registrado com sucesso!')
             form.save()
-            return redirect('gel:index')
+            return redirect('gel:login')
 
     return render(request,'gel/register.html',
                   {
@@ -25,7 +26,8 @@ def login_views(request):
             user = form.get_user()
             messages.success(request,'Usuário logado com sucesso!')
             auth.login(request,user)
-            print(user)
+            return redirect('gel:index')
+        messages.error(request,'Login inválido!')
     return render(request,'gel/login.html',
                   {
                       'form': form
@@ -34,3 +36,27 @@ def login_views(request):
 def logout_views(request):
     auth.logout(request)
     return redirect('gel:login')
+
+def update_views(request):
+    form = RegisterUpdateForm(instance=request.user)
+    if request.method != 'POST':
+        return render(
+        request,
+        'gel/update.html',
+        {
+            'form':form
+        })
+    
+    form = RegisterUpdateForm(data=request.POST,instance=request.user)
+
+    if not form.is_valid():
+        return render(
+        request,
+        'gel/update.html',
+        {
+            'form':form
+        })
+    
+    form.save()
+
+    return redirect('gel:update')
