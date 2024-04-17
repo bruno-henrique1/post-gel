@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from gel.forms import RegisterForm, RegisterUpdateForm
 from django.contrib import messages, auth
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 
 def register(request):
     form = RegisterForm()
@@ -32,11 +33,12 @@ def login_views(request):
                   {
                       'form': form
                   })
-
+@login_required(login_url='gel:register')
 def logout_views(request):
     auth.logout(request)
     return redirect('gel:login')
 
+@login_required(login_url='gel:register')
 def update_views(request):
     form = RegisterUpdateForm(instance=request.user)
     if request.method != 'POST':

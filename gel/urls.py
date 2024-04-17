@@ -7,5 +7,8 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', views.login_views, name='login'),
     path('logout/', views.logout_views, name='logout'),
-    path('update/', views.update_views, name='update')
+    path('update/', views.update_views, name='update'),
+    path('retorna_total_faq/', views.retorna_total_faq, name='retorna_total_faq'),
+    path('get_category_counts/', views.get_category_counts, name='get_category_counts'),
+    
 ]

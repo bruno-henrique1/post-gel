@@ -4,10 +4,16 @@
 {% include "global/partial/head.html" %}
 </head>
 <body>
+
 {% include "global/partial/_header.html" %}
 {% include "global/partial/messages.html" %}
 <main class="content">
         {% block content %}{% endblock content %}
+        
+</main>
+<main class="content">
+        {% block contentee %}{% endblock contentee %}
+        
 </main>
 </body>
 </html>
