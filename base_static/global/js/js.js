@@ -1,18 +1,3 @@
-function gera_cor(qtd=1){
-    var bg_color = []
-    var border_color = []
-    for(let i = 0; i < qtd; i++){
-        let r = Math.random() * 255;
-        let g = Math.random() * 255;
-        let b = Math.random() * 255;
-        bg_color.push(`rgba(${r}, ${g}, ${b}, ${0.2})`)
-        border_color.push(`rgba(${r}, ${g}, ${b}, ${1})`)
-    }
-    
-    return [bg_color, border_color];
-
-}
-
 function retorna_total_faq(url){  
     fetch(url, {
         method: 'GET',
@@ -24,27 +9,52 @@ function retorna_total_faq(url){
 
 }
 
-function renderiza_produtos_mais_vendidos(url) {
+function get_category_counts(url) {
     fetch(url, {
         method: 'GET',
     }).then(function(result) {
         return result.json();
     }).then(function(data) {
-        const ctx = document.getElementById('produtos_mais_vendidos').getContext('2d');
-        
-        var cores_faturamento_mensal = gera_cor(qtd=50); 
-        
+        const ctx = document.getElementById('get_category_counts').getContext('2d');
+        Chart.defaults.font.size = 20
+        var cores_faturamento_mensal = ['rgb(255, 99, 132)', 'rgb(55, 99, 132)', 'rgb(255, 199, 132)'];
+                 
         const myChart = new Chart(ctx, {
-            type: 'doughnut',
+            type: 'pie',
+            
             data: {
-                labels: data.labels, 
+                labels: data.labels,
                 datasets: [{
                     label: 'categories',
-                    backgroundColor: cores_faturamento_mensal,
                     data: data.data,
-                    backgroundColor: cores_faturamento_mensal[1],
-                    borderColor: cores_faturamento_mensal[160],
-                    borderWidth: 1
+                    backgroundColor: cores_faturamento_mensal
+                    
+                }]
+            }
+        });
+    });
+}
+
+function get_location_counts(url) {
+    fetch(url, {
+        method: 'GET',
+    }).then(function(result) {
+        return result.json();
+    }).then(function(data) {
+        const ctx = document.getElementById('get_location_counts').getContext('2d');
+        Chart.defaults.font.size = 20
+        var cores_faturamento_mensal = ['rgb(255, 99, 132)', 'rgb(55, 99, 132)', 'rgb(255, 199, 132)'];
+                 
+        const myChart = new Chart(ctx, {
+            type: 'polarArea',
+            
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    label: 'location',
+                    data: data.data,
+                    backgroundColor: cores_faturamento_mensal
+                    
                 }]
             }
         });

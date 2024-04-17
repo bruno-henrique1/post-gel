@@ -130,3 +130,10 @@ class RegisterUpdateForm(forms.ModelForm):
                 )
 
         return password1
+    
+class register_faq(forms.ModelForm):
+    class Meta:
+        model = models.faq
+        fields = (
+            'description', 'location', 'category','created_date'
+        )

@@ -47,9 +47,14 @@ class faq(models.Model):
         
         on_delete=models.SET_NULL,
         null=True
-        
+    
         
         )
+    owner = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        blank=True, null=True
+    )
 
     def __str__(self) -> str:
         return self.description
