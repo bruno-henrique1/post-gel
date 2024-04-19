@@ -4,7 +4,7 @@
 {% include "global/partial/head.html" %}
 </head>
 <body>
-
+<link rel="stylesheet" href="{% static 'global/css/css.css' %}">
 {% include "global/partial/_header.html" %}
 {% include "global/partial/messages.html" %}
 <main class="content">
@@ -12,6 +12,8 @@
         
 </main>
 <main class="content">
+
+        
         {% block contentee %}{% endblock contentee %}
         
 </main>

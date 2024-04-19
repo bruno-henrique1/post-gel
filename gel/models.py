@@ -15,10 +15,10 @@ class category(models.Model):
     
 
 class location(models.Model):
+    bairro = models.CharField(blank=True,max_length=30)
     cep = models.CharField(unique=True,max_length=8)
     endereco = models.CharField(max_length=50)
     numero = models.CharField(blank=True,max_length=5)
-    bairro = models.CharField(blank=True,max_length=30)
     municipio = models.CharField(blank=True,max_length=50)
     created_date = models.DateTimeField(default=timezone.now)
     show = models.BooleanField(default=True)

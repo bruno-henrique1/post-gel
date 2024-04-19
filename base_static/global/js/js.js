@@ -17,6 +17,7 @@ function get_category_counts(url) {
     }).then(function(data) {
         const ctx = document.getElementById('get_category_counts').getContext('2d');
         Chart.defaults.font.size = 20
+        
         var cores_faturamento_mensal = ['rgb(255, 99, 132)', 'rgb(55, 99, 132)', 'rgb(255, 199, 132)'];
                  
         const myChart = new Chart(ctx, {
@@ -25,7 +26,7 @@ function get_category_counts(url) {
             data: {
                 labels: data.labels,
                 datasets: [{
-                    label: 'categories',
+                    label: 'Quantidade',
                     data: data.data,
                     backgroundColor: cores_faturamento_mensal
                     
@@ -51,7 +52,7 @@ function get_location_counts(url) {
             data: {
                 labels: data.labels,
                 datasets: [{
-                    label: 'location',
+                    label: 'Local',
                     data: data.data,
                     backgroundColor: cores_faturamento_mensal
                     
