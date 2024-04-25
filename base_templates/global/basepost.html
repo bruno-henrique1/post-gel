@@ -1,0 +1,42 @@
+{% load static %}<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+{% include "global/partial/head.html" %}
+{% block additional_head %}{% endblock additional_head %}
+
+{% include "global/partial/_hdr.html" %}
+</head>
+<body>
+    
+    
+    
+    <div class="blog-wrapper" >
+        
+        
+        
+        {% if site_setup.show_header %}
+            {% include "global/partial/_header.html" %}
+        {% endif %}
+
+        
+
+        {% block contentt %}{% endblock contentt %}
+
+        {% if site_setup.show_pagination %}
+        {% include "global/partial/_pagination.html" %}
+        {% endif %}
+
+        {% if site_setup.show_footer %}
+        {% include "global/partial/ft.html" %}
+        {% endif %}
+
+       
+    </div>
+    
+    
+    
+</body>
+
+
+
+</html>

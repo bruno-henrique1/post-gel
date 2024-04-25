@@ -1,0 +1,57 @@
+{% extends 'global/basepost.html' %}
+
+{% block contentt %}
+  <main class="main-content section-wrapper">
+    <div class="section-content-wide">
+      <div class="section-gap">
+        {% if page_obj %}
+        <div class="section-content-wide">
+          <div class="section-gap">
+            
+            <p class="blog-description pb-base center">
+              {{site_setup.description | safe}}
+            </p>
+            {% if site_setup.show_search %}
+            <div class="">
+              <form class="search-form" action='{% url "postt:search" %}' method="get">
+                <div class="search-content">
+                  <label class="sr-only" id="search-label" for="search-input">Search</label>
+                  <input
+                    class="search-input"
+                    type="search"
+                    name="search"
+                    id="search-input"
+                    placeholder="Pesquisar notícias"
+                    value="{{search.value}}"
+                  >
+                  <button class="search-btn" type="submit" aria-labelledby="search-label">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
+          {% endif %}
+          
+           
+            
+          </div>
+        </div>
+          <div class="card-grid">
+            {% for post in page_obj %}
+              {% include 'global/partial/_post-card.html' with i=forloop.counter0 %}
+            {% endfor %}
+        </div>
+        {% else %}
+          <div class="not-found center">
+            <h1>Nada encontrado!</h1>
+            <p>
+              Não encontrei nada nesse link, por favor, clique em outro 
+              link do nosso site ou vá para o
+              <a href="{% url 'gel:index' %}">Início</a>.
+            </p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </main>
+{% endblock contentt %}

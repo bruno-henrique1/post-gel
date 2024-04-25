@@ -1,29 +1,52 @@
-<header class="header">
-    <h1 class="header-heading">
-      <a href="{% url 'gel:index' %}" class="header-link">
-        gel
-      </a>
-    </h1>
-
-    <nav class="menu">
-        <ul class="menu-list">
+<header class="headerr">
+  <div class="headerr-heading">
+    <a href="{% url 'gel:index' %}" class="headerr-link">
+     {{site_setup.title}}
+    </a>
+  </div>
+    
+        {% if site_setup.show_menu %}
+            <nav class="menuu">
+              <ul class="menuu-list">
+                {% for link in site_setup.menulink_set.all %}
+                  <li class="menuu-item">
+                    {% if link.new_tab %}
+                      <a target="_blank" class="menuu-link" href="{{ link.url_or_path }}">
+                        {{ link.text }}
+                      </a>
+                  {% else %}
+                      <a class="menuu-link" href="{{ link.url_or_path }}">
+                        {{ link.text }}
+                      </a>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              
+          
+          {% endif %}
+          
           {% if user.is_authenticated %}
-            <li class="menu-item">
-              <a href="{% url 'gel:create_faq' %}" class="menu-link">Sugestão e Vistoria</a>
+            <li class="menuu-item">
+              <a href="{% url 'gel:create_faq' %}" class="menuu-link">Sugestão e Vistoria</a>
             </li>
-            <li class="menu-item">
-              <a href="{% url 'gel:update' %}" class="menu-link">Atualizar</a>
+            <li class="menuu-item">
+              <a href="{% url 'gel:update' %}" class="menuu-link">Atualizar</a>
             </li>
-            <li class="menu-item">
-              <a href="{% url 'gel:login' %}" class="menu-link">Sair</a>
+            <li class="menuu-item">
+              <a href="{% url 'gel:login' %}" class="menuu-link">Sair</a>
             </li>
           {% else %}
-            <li class="menu-item">
-              <a href="{% url 'gel:register' %}" class="menu-link">Criar</a>
+            <li class="menuu-item">
+              <a href="{% url 'gel:register' %}" class="menuu-link">Criar</a>
             </li>
-            <li class="menu-item">
-                <a href="{% url 'gel:login' %}" class="menu-link">Login</a>
+            <li class="menuu-item">
+                <a href="{% url 'gel:login' %}" class="menuu-link">Login</a>
             </li>
-          {% endif %}
-    
+            {% endif %}
+            </ul>
+          </nav>
+          
+      
+          
 </header>
+

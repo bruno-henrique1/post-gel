@@ -1,0 +1,88 @@
+{% extends 'global/basepost.html' %}
+
+
+{% block contentt %}
+
+
+<main class="main-content single-post section-wrapper">
+    <div class="single-post-content section-content-narrow">
+      <div class="single-post-gap section-gap">
+        {% if post.cover and post.cover_in_post_content %}
+          <div class="single-post-cover pb-base">
+            <img loading="lazy" 
+            src="{{ post.cover.url }}" 
+            alt="{{ post.title }}">
+          </div>
+        {% endif %}
+  
+        <h2 class="single-post-title pb-base center">
+          {{ post.title }}
+        </h2>
+  
+        <div class="post-meta pb-base">
+          <div class="post-meta-item">
+            <a class="post-meta-link"href="{% url 'postt:created_by' post.created_by.pk  %}">
+              <i class="fa-solid fa-user"></i>
+              <span>
+               {% if post.created_by.first_name %}
+                  {{post.created_by.first_name}}
+                  {{post.created_by.last_name}}
+                {% else %}
+                  Gerencia Local
+               {% endif %}
+              </span>
+            </a>
+          </div>
+          <div class="post-meta-item">
+            <span class="post-meta-link">
+              <i class="fa-solid fa-calendar-days"></i>
+              <span>
+                {% now "DATE_FORMAT" %}
+              </span>
+            </span>
+          </div>
+          
+          {% if post.categoryy %}
+              <div class="post-meta-item">
+                <a class="post-meta-link" 
+                  href="{% url "postt:categoryy" post.categoryy.slug %}">
+                  <i class="fa-solid fa-tag"></i>
+                  <span>
+                    {{post.categoryy.name}}
+                  </span>
+                </a>
+              </div>
+          {% endif %}
+
+        </div>
+  
+        <p class="single-post-excerpt pb-base">
+          {{post.excerpt | safe}}
+        </p>
+  
+        <div class="separator"></div>
+  
+        <div class="single-post-content">
+          {{post.content | safe}} 
+          
+          {% if post.tags.exists %}
+            <div class="post-tags">
+              <span>Tags: </span>
+                {% for tags in post.tags.all %}
+                <a class="post-tag-link" href="{% url "postt:tag" tags.slug %}">
+                  <i class="fa-solid fa-link"></i>
+                  <span>{{tags.name}}</span>
+                </a>
+              {% endfor %}
+              
+            </div>
+          {% endif %}
+          
+        </div>
+      
+      </div>
+    </div>
+  </main>
+  
+
+{% endblock contentt %}

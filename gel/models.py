@@ -12,8 +12,6 @@ class category(models.Model):
     def __str__(self) -> str:
         return self.name
 
-    
-
 class location(models.Model):
     bairro = models.CharField(blank=True,max_length=30)
     cep = models.CharField(unique=True,max_length=8)
@@ -30,7 +28,7 @@ class location(models.Model):
     )
 
     def __str__(self) -> str:
-        return self.cep
+        return self.bairro
 
 class faq(models.Model):
     description = models.TextField(blank=True)

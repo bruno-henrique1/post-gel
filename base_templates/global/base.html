@@ -2,21 +2,32 @@
 <html lang="pt-BR">
 <head>
 {% include "global/partial/head.html" %}
+{% block additional_head %}{% endblock additional_head %}
 </head>
 <body>
-<link rel="stylesheet" href="{% static 'global/css/css.css' %}">
-{% include "global/partial/_header.html" %}
-{% include "global/partial/messages.html" %}
-<main class="content">
-        {% block content %}{% endblock content %}
-        
-</main>
-<main class="content">
+        <div class="blog-wrapper">
+               
+                {% if site_setup.show_header %}
+                        
+                        {% include "global/partial/_header.html" %}
+                {% endif %}
 
+                {% include "global/partial/messages.html" %}
+                {% block content %}{% endblock content %}
+                {% block contentee %}{% endblock contentee %}
+                {% block contenteee %}{% endblock contenteee %}
+                
+                {% if site_setup.show_footer %}
+                {% include "global/partial/ft.html" %}
+                {% endif %}
+
+        </div>
+       
         
-        {% block contentee %}{% endblock contentee %}
         
-</main>
+        
+        
 </body>
-{% include "global/partial/footer.html" %}
+
+
 </html>
