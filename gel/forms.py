@@ -9,7 +9,7 @@ from . import models
 class RegisterForm(UserCreationForm):
     first_name = forms.CharField(
         required=True,
-        min_length=5,
+        min_length=3,
         label='Nome:'
     )
     last_name = forms.CharField(
@@ -20,12 +20,20 @@ class RegisterForm(UserCreationForm):
     email = forms.EmailField(
         required=True
     )
+    age = forms.IntegerField(label='Idade')
+    os_choice = (
+        ('M','Masculino'),
+        ('F','Feminino'),
+        ('Outros','Outros'),
+    )
 
+    gender = forms.ChoiceField(choices=os_choice, required=True,label='Gênero')
+
+    
     class Meta:
         model = User
         fields = (
-            'first_name', 'last_name', 'email',
-            'username', 'password1', 'password2',
+            'username','password1', 'password2','first_name', 'last_name', 'email','gender','age',
         )
 
     def clean_email(self):

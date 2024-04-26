@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 
 from .models import category, location, faq
-
+from .forms import RegisterForm
 
 @admin.register(faq)
 class FaqAdmin(admin.ModelAdmin):
@@ -30,3 +30,4 @@ class CategoryAdmin(admin.ModelAdmin):
 # admin.site.register(location)
 # admin.site.register(category)
 # admin.site.register(faq)
+

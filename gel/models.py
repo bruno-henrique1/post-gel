@@ -31,21 +31,23 @@ class location(models.Model):
         return self.bairro
 
 class faq(models.Model):
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True,verbose_name='Descrição')
     created_date = models.DateTimeField(default=timezone.now)
 
     location = models.ForeignKey(
         location,
         on_delete=models.SET_NULL,
-        null=True
+        null=True,
+        verbose_name='Local'
         )
+        
 
     category = models.ForeignKey(
         category,
         
         on_delete=models.SET_NULL,
-        null=True
-    
+        null=True,
+        verbose_name='Categoria'
         
         )
     owner = models.ForeignKey(
@@ -56,3 +58,4 @@ class faq(models.Model):
 
     def __str__(self) -> str:
         return self.description
+    
